@@ -41,8 +41,6 @@ function areaPerPersonMultilevelCylinder(R, h, population, numLevels)
 		livingArea = livingArea + (pi * radius * radius)
 	end
 
-	println("area per person: ", / population)
-
 	println("area per person: ", (livingArea / population) )
 	println("floor height: ", floorHeight )
 end
