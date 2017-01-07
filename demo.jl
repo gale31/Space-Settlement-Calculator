@@ -3,7 +3,7 @@
 # output : Centripetal Acceleration (or gravity level) in g
 
 function gravity(R, AngVel)
-	println("gravity level: ", 0.0011182439581632371 * R * AngVel ^ 2)
+	println("gravity level: ", (R * (AngVel/9.54929659) ^ 2)*0.10197162129779283)
 end
 
 function sphere(R)
@@ -33,16 +33,23 @@ function areaPerPersonSurfaceCylinder(R, h, population)
 	println("area per person: ", (2 * pi * r ^ 2 + 2 * pi * r * h) / population)
 end
 
-function areaPerPersonMultilevelCylinder(R, h, population, numLevels)
-	livingArea = 0
-	floorHeight = height / numLevels
-
-	for i = 1:numFloor
-		livingArea = livingArea + (pi * radius * radius)
+function areaPerPersonMultilevelCylinder(R, h, population, heightLevel)
+	
+	if R > 270
+		R = 270
 	end
 
-	println("area per person: ", (livingArea / population) )
-	println("floor height: ", floorHeight )
+	livingArea = 2 * pi * R * h
+	num = 1
+
+	while R > (190 + heightLevel)
+		R = R - heightLevel
+		livingArea = livingArea + 2 * pi * R * h
+		num = num + 1
+	end
+
+	println("area per person: ", (livingArea / population))
+	println("number of floors: ",  num)
 end
 
 # daily kilocalorie requirements calculated using the Harris–Benedict equation, revised by Mifflin and St Jeor
